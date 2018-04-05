@@ -9,10 +9,5 @@ class Post extends BasePost
     /**
      * @var string
      */
-    protected $connection = 'corcel';
-
-    /**
-     * @var string
-     */
     protected $postType = 'post';
 }
