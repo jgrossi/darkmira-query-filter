@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Corcel\Model\Post as BasePost;
+use Corcel\Model\Post as CorcelPost;
 
-class Post extends BasePost
+class Post extends CorcelPost
 {
     /**
      * @var string
