@@ -34,8 +34,8 @@ abstract class QueryFilter
 
         foreach ($this->fields() as $field => $value) {
             $method = camel_case($field);
-            if ($value && method_exists($this, $method)) {
-                call_user_func_array([$this, $method], [$value]);
+            if (method_exists($this, $method)) {
+                call_user_func_array([$this, $method], (array)$value);
             }
         }
     }
@@ -45,10 +45,15 @@ abstract class QueryFilter
      */
     protected function fields(): array
     {
-        return array_map('trim', $this->request->all());
+        return array_filter(
+            array_map('trim', $this->request->all())
+        );
     }
 
     /**
+     * Sort the collection by the sort field
+     * Examples: sort=+title,-status || sort=-title || sort=status
+     * 
      * @param string $value
      */
     protected function sort(string $value)

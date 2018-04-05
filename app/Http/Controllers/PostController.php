@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index(PostFilter $filter)
     {
-        $posts = Post::filter($filter)->paginate(10);
+        $posts = Post::filter($filter)->limit(10)->get();
 
         return PostResource::collection($posts);
     }
