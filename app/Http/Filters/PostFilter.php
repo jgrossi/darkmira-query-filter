@@ -19,7 +19,7 @@ class PostFilter extends QueryFilter
      */
     public function title(string $title)
     {
-        $words = explode(' ', $title);
+        $words = array_filter(explode(' ', $title));
 
         $this->builder->where(function (Builder $query) use ($words) {
             foreach ($words as $word) {
