@@ -53,7 +53,7 @@ abstract class QueryFilter
     /**
      * Sort the collection by the sort field
      * Examples: sort=+title,-status || sort=-title || sort=status
-     * 
+     *
      * @param string $value
      */
     protected function sort(string $value)
