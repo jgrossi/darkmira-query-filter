@@ -47,4 +47,23 @@ abstract class QueryFilter
     {
         return array_map('trim', $this->request->all());
     }
+
+    /**
+     * @param string $value
+     */
+    protected function sort(string $value)
+    {
+        collect(explode(',', $value))->mapWithKeys(function (string $field) {
+            switch (substr($field, 0, 1)) {
+                case '-':
+                    return [substr($field, 1) => 'desc'];
+                case '+':
+                    return [substr($field, 1) => 'asc'];
+                default:
+                    return [$field => 'asc'];
+            }
+        })->each(function ($order, $field) {
+            $this->builder->orderBy($field, $order);
+        });
+    }
 }
