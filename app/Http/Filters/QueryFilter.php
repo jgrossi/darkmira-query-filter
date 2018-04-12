@@ -67,7 +67,7 @@ abstract class QueryFilter
                 default:
                     return [$field => 'asc'];
             }
-        })->each(function ($order, $field) {
+        })->each(function (string $order, string $field) {
             $this->builder->orderBy($field, $order);
         });
     }
